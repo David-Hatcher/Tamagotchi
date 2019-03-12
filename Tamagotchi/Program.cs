@@ -8,11 +8,17 @@ namespace Tamagotchi
 {
     class Program
     {
+        static private bool quit = false;
+
         static void Main(string[] args)
         {
             GreetPlayer();
             GetGender();
             GetName();
+            while (tama.alive() && !quit)
+            {
+                Alive();
+            }
         }
 
         static private void GreetPlayer()
@@ -31,5 +37,15 @@ namespace Tamagotchi
             string name = Console.ReadLine();
             return name;
         }
+        static private void Alive(){
+            if (!tama.alive())
+            {
+                Console.WriteLine("It looks like {0} has died from hunger.", tama.name);
+            }
+        }
+
+
+        quit functionality
+            with non workign save
     }
 }
