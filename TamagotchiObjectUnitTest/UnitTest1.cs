@@ -43,8 +43,8 @@ namespace TamagotchiObjectUnitTest
         public void TestNameGetSet()
         {
             TamagotchiOject to = new TamagotchiOject();
-            to.nameGetSet = "Jimmy";
-            string result = to.nameGetSet;
+            to.name = "Jimmy";
+            string result = to.name;
             string expected ="Jimmy";
             Assert.AreEqual(result, expected);
         }
@@ -52,8 +52,8 @@ namespace TamagotchiObjectUnitTest
         public void TestGenderGetSet()
         {
             TamagotchiOject to = new TamagotchiOject();
-            to.genderGetSet = "Jimmy";
-            string result = to.genderGetSet;
+            to.gender = "Jimmy";
+            string result = to.gender;
             string expected = "Jimmy";
             Assert.AreEqual(result, expected);
         }

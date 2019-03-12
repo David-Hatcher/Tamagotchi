@@ -8,10 +8,8 @@ namespace Tamagotchi
 {
     public class TamagotchiOject
     {
-        string tamagotchiName;
-        public string nameGetSet { get { return tamagotchiName; } set { tamagotchiName = value; } }
-        string tamagotchiGender;
-        public string genderGetSet { get {return tamagotchiGender; } set {tamagotchiGender = value; } }
+        public string name { get; set; }
+        public string gender { get; set; }
 
         public int happinessLevel = 50;
         public int hungerLevel = 50;
