@@ -42,6 +42,7 @@ namespace Tamagotchi
                 {
                     Console.WriteLine(tama.PlayerChoice(PlayerChoice()));
                 }
+                tama.Tick();
                 Alive();
             }
         }
