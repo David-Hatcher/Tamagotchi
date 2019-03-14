@@ -10,39 +10,39 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TestHappinessAdjust()
         {
-            TamagotchiOject to = new TamagotchiOject();
+            TamagotchiObject to = new TamagotchiObject();
+            int expected = to.happinessLevel - 5;
             to.happyAdjust(-5);
-            int expected = 45;
             Assert.AreEqual(to.happinessLevel, expected);
         }
         [TestMethod]
         public void TestHungerAdjust()
         {
-            TamagotchiOject to = new TamagotchiOject();
+            TamagotchiObject to = new TamagotchiObject();
+            int expected = to.hungerLevel - 5;
             to.hungerAdjust(-5);
-            int expected = 45;
             Assert.AreEqual(to.hungerLevel, expected);
         }
         [TestMethod]
         public void TestTiredAdjust()
         {
-            TamagotchiOject to = new TamagotchiOject();
+            TamagotchiObject to = new TamagotchiObject();            
+            int expected = to.tirednessLevel -5;
             to.tiredAdjust(-5);
-            int expected = 45;
             Assert.AreEqual(to.tirednessLevel, expected);
         }
         [TestMethod]
         public void TestFullAdjust()
         {
-            TamagotchiOject to = new TamagotchiOject();
-            to.fullAdjust(-5);
-            int expected = 45;
+            TamagotchiObject to = new TamagotchiObject();
+            int expected = to.fullnessLevel - 5;
+            to.fullAdjust(-5);            
             Assert.AreEqual(to.fullnessLevel, expected);
         }
         [TestMethod]
         public void TestNameGetSet()
         {
-            TamagotchiOject to = new TamagotchiOject();
+            TamagotchiObject to = new TamagotchiObject();
             to.name = "Jimmy";
             string result = to.name;
             string expected ="Jimmy";
@@ -51,36 +51,66 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TestGenderGetSet()
         {
-            TamagotchiOject to = new TamagotchiOject();
+            TamagotchiObject to = new TamagotchiObject();
             to.gender = "Jimmy";
             string result = to.gender;
             string expected = "Jimmy";
             Assert.AreEqual(result, expected);
         }
         [TestMethod]
-        public void TestStatusResponse()
+        public void TeststatValue_Happiness()
         {
-            TamagotchiOject to = new TamagotchiOject();
-            to.happinessLevel = 15;
-            to.hungerLevel = 70;
-            to.fullnessLevel = 100;
-            to.tirednessLevel = 10;
-
-            string result = to.tamagotchiNeeds();
-            string expected = "like they're about to die from exhaustion.";
+            TamagotchiObject to = new TamagotchiObject();
+            int result = to.statValue("happiness");
+            int expected = to.happinessLevel;
             Assert.AreEqual(result, expected);
         }
         [TestMethod]
-        public void TestStatusResponse2()
+        public void TeststatValue_Tiredness()
         {
-            TamagotchiOject to = new TamagotchiOject();
-            to.happinessLevel = 15;
-            to.hungerLevel = 20;
-            to.fullnessLevel = 100;
-            to.tirednessLevel = 10;
-
-            string result = to.tamagotchiNeeds();
-            string expected = "very hungry.";
+            TamagotchiObject to = new TamagotchiObject();
+            int result = to.statValue("tiredness");
+            int expected = to.tirednessLevel;
+            Assert.AreEqual(result, expected);
+        }
+        [TestMethod]
+        public void TeststatStatus()
+        {
+            TamagotchiObject to = new TamagotchiObject();
+            string result = to.statStatus("tiredness");
+            string expected = "a little tired.";
+            Assert.AreEqual(result, expected);
+        }
+        [TestMethod]
+        public void TeststatStatus2()
+        {
+            TamagotchiObject to = new TamagotchiObject();
+            string result = to.statStatus("hunger");
+            string expected = "like they could probably eat.";
+            Assert.AreEqual(result, expected);
+        }
+        [TestMethod]
+        public void TeststatStatus3()
+        {
+            TamagotchiObject to = new TamagotchiObject();
+            string result = to.statStatus("happiness");
+            string expected = "content.";
+            Assert.AreEqual(result, expected);
+        }
+        [TestMethod]
+        public void TeststatStatus4()
+        {
+            TamagotchiObject to = new TamagotchiObject();
+            string result = to.statStatus("fullness");
+            string expected = "like they can wait awhile to use the bathroom.";
+            Assert.AreEqual(result, expected);
+        }
+        [TestMethod]
+        public void TeststatStatus5()
+        {
+            TamagotchiObject to = new TamagotchiObject();
+            string result = to.statStatus("buttstuff");
+            string expected = "please enter a valid stat(hunger, tiredness, happiness, fullness)";
             Assert.AreEqual(result, expected);
         }
 
