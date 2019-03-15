@@ -115,25 +115,25 @@ namespace Tamagotchi
             if (whatDo == "play")
             {
                 action = "played " + name + ".";
-                int[] changes = { 20, 0, 0, 0 };
+                int[] changes = { 20, 0, -10, 0 };
                 adjustStats(changes);
             }
             else if (whatDo == "feed")
             {
                 action = "fed " + name + ".";
-                int[] changes = { 0, 20, 0, 0 };
+                int[] changes = { 0, 20, 0, -10 };
                 adjustStats(changes);
             }
             else if (whatDo == "poop")
             {
                 action = "took " + name + " to the bathroom.";
-                int[] changes = { 0, 0, 0, 20 };
+                int[] changes = { 0, -10, 0, 20 };
                 adjustStats(changes);
             }
             else if (whatDo == "sleep")
             {
                 action = "put " + name + " to bed.";
-                int[] changes = { 0, 0, 20, 0 };
+                int[] changes = { -10, 0, 20, 0 };
                 adjustStats(changes);
             }
             string fullResponse = "You " + action;
