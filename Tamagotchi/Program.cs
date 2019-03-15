@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +12,7 @@ namespace Tamagotchi
 
         static void Main(string[] args)
         {
+
             GreetPlayer();
             tama.gender = GetGender();
             tama.name = GetName();
@@ -79,6 +79,7 @@ namespace Tamagotchi
         static private void Help()
         {
             Console.Write("The following commands work: play, feed, poop, sleep, hunger, tiredness, fullness, happiness, help, quit");
+
 
         }
     }
