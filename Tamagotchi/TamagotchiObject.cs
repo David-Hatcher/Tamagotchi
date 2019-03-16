@@ -10,7 +10,7 @@ namespace Tamagotchi
     {
         public string name { get; set; }
         public string gender { get; set; }
-        string deathReason;
+        public string deathReason;
         public Dictionary<string, int> statValues = new Dictionary<string, int>()
         {
                 {"happiness", 50 },
@@ -89,7 +89,7 @@ namespace Tamagotchi
 
         public bool isAlive()
         {
-            string deathReason =
+            deathReason =
                 statValues["hunger"]    <= 0 ? "starvation" :
                 statValues["tiredness"] <= 0 ? "exhaustion" :
                 statValues["fullness"]  <= 0 ? "a ruptured bowel" :
