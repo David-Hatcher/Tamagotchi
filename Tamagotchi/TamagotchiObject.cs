@@ -10,7 +10,7 @@ namespace Tamagotchi
     {
         public string name { get; set; }
         public string gender { get; set; }
-
+        public string deathReason;
         public Dictionary<string, int> statValues = new Dictionary<string, int>()
         {
                 {"happiness", 50 },
@@ -89,11 +89,18 @@ namespace Tamagotchi
 
         public bool isAlive()
         {
+            deathReason =
+                statValues["hunger"]    <= 0 ? "starvation" :
+                statValues["tiredness"] <= 0 ? "exhaustion" :
+                statValues["fullness"]  <= 0 ? "a ruptured bowel" :
+                statValues["happiness"] <= 0 ? "suicide" :
+                "";
+
             bool response =
-                statValues["hunger"]        == 0 ? false :
-                statValues["tiredness"]     == 0 ? false :
-                statValues["fullness"]      == 0 ? false :
-                statValues["happiness"]     == 0 ? false :
+                statValues["hunger"]        <= 0 ? false :
+                statValues["tiredness"]     <= 0 ? false :
+                statValues["fullness"]      <= 0 ? false :
+                statValues["happiness"]     <= 0 ? false :
                 true;
             return response;
 
@@ -103,37 +110,37 @@ namespace Tamagotchi
             string action = "";
             if (whatDo == "play")
             {
-                action = "played" + name + ".";
+                action = "played " + name + ".";
                 int[] changes = { 20, 0, 0, 0 };
                 adjustStats(changes);
             }
             else if (whatDo == "feed")
             {
-                action = "fed" + name + ".";
+                action = "fed " + name + ".";
                 int[] changes = { 0, 20, 0, 0 };
                 adjustStats(changes);
             }
             else if (whatDo == "poop")
             {
-                action = " took " + name + " to the bathroom.";
+                action = "took " + name + " to the bathroom.";
                 int[] changes = { 0, 0, 0, 20 };
                 adjustStats(changes);
             }
             else if (whatDo == "sleep")
             {
-                action = "put" + name + "to sleep.";
+                action = "put " + name + " to bed.";
                 int[] changes = { 0, 0, 20, 0 };
                 adjustStats(changes);
             }
-            string fullResponse = "You" + action;
+            string fullResponse = "You " + action;
             return fullResponse;
         }
 
-        public void tick()
+        public void Tick()
         {
             Random rnd = new Random();            
             int statSelection = rnd.Next(0, 3);
-            int tickValue = rnd.Next(-1, -15);
+            int tickValue = rnd.Next(-50,-1);
             int[] changes = statSelection == 0 ? new[] { tickValue, 0, 0, 0 } :
                             statSelection == 1 ? new[] { 0, tickValue, 0, 0 } :
                             statSelection == 2 ? new[] { 0, 0, tickValue, 0 } :

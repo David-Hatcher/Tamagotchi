@@ -8,17 +8,17 @@ namespace Tamagotchi
     class Program
     {
         static private bool quit = false;
-        TamagotchiObject tama = new TamagotchiObject();
+        static TamagotchiObject tama = new TamagotchiObject();
 
         static void Main(string[] args)
         {
-
             GreetPlayer();
             tama.gender = GetGender();
             tama.name = GetName();
-            while (tama.alive() && !quit)
+            while (tama.isAlive() && !quit)
             {
-                if(PlayerChoice() == "quit")
+                string playerInput = PlayerChoice();
+                if(playerInput == "quit")
                 {
                     Console.Write("All unsaved progess will be lost. Are you sure?: ");
                     string answer = Console.ReadLine();
@@ -34,13 +34,15 @@ namespace Tamagotchi
                         Console.Write("I do not understand that commmand.");
                         continue;
                     }
-                } else if (PlayerChoice() == "help")
+                }
+                else if (playerInput == "help")
                 {
                     Help();
                     continue;
-                } else
+                }
+                else
                 {
-                    Console.WriteLine(tama.PlayerChoice(PlayerChoice()));
+                    Console.WriteLine(tama.PlayerChoice(playerInput));
                 }
                 tama.Tick();
                 Alive();
@@ -64,9 +66,10 @@ namespace Tamagotchi
             return name;
         }
         static private void Alive(){
-            if (!tama.alive())
+            if (!tama.isAlive())
             {
-                Console.WriteLine("It looks like {0} has died from hunger.", tama.name);
+                Console.WriteLine("It looks like {0} has died from {1}.", tama.name, tama.deathReason);
+                Console.ReadLine();
                 quit = true;
             }
         }
