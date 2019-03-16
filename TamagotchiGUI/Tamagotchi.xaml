@@ -1,0 +1,16 @@
+﻿<Window x:Class="TamagotchiGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TamagotchiGUI"
+        mc:Ignorable="d"
+        Title="Tamagotchi!!!" Height="450" Width="800">
+    <Grid>
+        <Image Source="C:\Users\David\source\repos\Tamagotchi\TamagotchiGUI\Kuchipatchisprite.png" x:Name="Kuchipatchi" HorizontalAlignment="Center" Height="127" Margin="326,63,332,0" VerticalAlignment="Top" Width="134"/>
+        <Button x:Name="PlayButton" Content="Play!" HorizontalAlignment="Left" Margin="128,282,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+        <Button x:Name="FeedButton" Content="Feed!" HorizontalAlignment="Left" Margin="296,282,0,0" VerticalAlignment="Top" Width="75" Click="FeedButton_Click"/>
+        <Button x:Name="SleepButton" Content="Sleep!" HorizontalAlignment="Left" Margin="465,282,0,0" VerticalAlignment="Top" Width="75" Click="SleepButton_Click"/>
+        <Button x:Name="PoopButton" Content="Poop!" HorizontalAlignment="Left" Margin="621,282,0,0" VerticalAlignment="Top" Width="75" Click="PoopButton_Click"/>
+    </Grid>
+</Window>
