@@ -11,6 +11,7 @@ namespace Tamagotchi
         public string name { get; set; }
         public string gender { get; set; }
         public string deathReason;
+        SaveLoad sl = new SaveLoad();
         public Dictionary<string, int> statValues = new Dictionary<string, int>()
         {
                 {"happiness", 50 },
@@ -140,7 +141,7 @@ namespace Tamagotchi
         {
             Random rnd = new Random();            
             int statSelection = rnd.Next(0, 3);
-            int tickValue = rnd.Next(-50,-1);
+            int tickValue = rnd.Next(-10,-1);
             int[] changes = statSelection == 0 ? new[] { tickValue, 0, 0, 0 } :
                             statSelection == 1 ? new[] { 0, tickValue, 0, 0 } :
                             statSelection == 2 ? new[] { 0, 0, tickValue, 0 } :
@@ -167,6 +168,30 @@ namespace Tamagotchi
             }
 
         }
-
+        public void Load(string inputName)
+        {
+            string genderValue= "";
+            int i = 0;            
+            List<int> loadValues = new List<int>();
+            foreach (dynamic value in sl.Load(inputName))
+            {
+                if (i == 4)
+                {
+                    genderValue = value;
+                }
+                else
+                {
+                    loadValues.Add(value - 50);
+                    i += 1;
+                }
+            }
+            adjustStats(loadValues.ToArray());
+            gender = genderValue;
+            name = inputName;
+        }
+        public void Save()
+        {
+            sl.Save(statValues, name, gender);
+        }
     }
 }
