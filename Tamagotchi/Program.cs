@@ -15,23 +15,19 @@ namespace Tamagotchi
         static void Main(string[] args)
         {
             string loadOrNewChoice = LoadOrNew();
-            while (tama.name == null)
+            while (tama.Name == null)
             {
                 if (loadOrNewChoice == "new")
-                {
+                {                    
                     GreetPlayer();
-                    tama.gender = GetGender();
-                    tama.name = GetName();
+                    tama.Gender = GetGender();
+                    tama.Name = GetName();
                 }
                 else if (loadOrNewChoice == "load")
                 {
                     try
                     {
                         LoadTama();
-                        foreach (int value in tama.statValues.Values)
-                        {
-                            Console.WriteLine(value + " ");
-                        }
                     }
                     catch
                     {
@@ -68,7 +64,7 @@ namespace Tamagotchi
                 }
                 else if (playerInput == "save")
                 {
-                    tama.Save();
+                    tama.Save(tama);
                 }
                 else if (playerInput == "help")
                 {
@@ -93,7 +89,8 @@ namespace Tamagotchi
         {
             Console.WriteLine("Please enter the name of the Tamagotchi you would like to load.(This is case sensitive)");
             string inputName = Console.ReadLine();
-            tama.Load(inputName);
+            dynamic to = tama.Load(inputName);
+            tama = to;
         }
         static private void GreetPlayer()
         {
@@ -115,14 +112,14 @@ namespace Tamagotchi
         {
             if (!tama.isAlive())
             {
-                Console.WriteLine("It looks like {0} has died from {1}.", tama.name, tama.deathReason);
+                Console.WriteLine("It looks like {0} has died from {1}.", tama.Name, tama.deathReason);
                 Console.ReadLine();
                 quit = true;
             }
         }
         static private string PlayerChoice()
         {
-            Console.Write("What would you like to do with {0}: [type 'help' for commands or 'quit']", tama.name);
+            Console.Write("What would you like to do with {0}: [type 'help' for commands or 'quit']", tama.Name);
             string response = Console.ReadLine();
             return response.ToLower();
         }

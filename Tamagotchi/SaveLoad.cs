@@ -9,48 +9,71 @@ using System.Threading.Tasks;
 namespace Tamagotchi
 {
     public class SaveLoad
-    {        
-        public void Save(Dictionary<string, int> statValues, string name, string gender)
-        {
-            string filePath = @"..\..\..\Tamagotchi\" + name + ".txt";
+    {
 
-            if (File.Exists(filePath))
-            {                
-                File.Delete(filePath);
-            }
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..\..\..\Tamagotchi\" + name + ".txt"))
-            {                                           
-                foreach (int statValue in statValues.Values)
-                {
-                    file.WriteLine(statValue);
-                }
-                file.WriteLine(gender);
-                file.Close();
-            }
-        }
-        public List<dynamic>  Load(string name)
+        public void Save(dynamic tama)
         {
-            List<dynamic> values = new List<dynamic>();
-            string line;
-
-            using (System.IO.StreamReader file = new System.IO.StreamReader(@"..\..\..\Tamagotchi\" + name + ".txt"))
+            using (var context = new TamagotchiEntities())
             {
-                int i = 0;      
-                while ((line = file.ReadLine()) != null)
-                {   if (i == 4)
-                    {
-                        values.Add(line);
-                    }
-                    else
-                    {
-                        values.Add(Convert.ToInt32(line));
-                        i += 1;
-                    };
+                var Tama = context.TamagotchiObjects.Find(tama.Name);
+                if (Tama != null)
+                {
+                    Tama.Happiness = tama.Happiness;
+                    Tama.Fullness = tama.Fullness;
+                    Tama.Tiredness = tama.Tiredness;
+                    Tama.Hunger = tama.Hunger;
                 }
-                file.Close();
+                else
+                {
+                    context.TamagotchiObjects.Add(tama);
+                }
+                context.SaveChanges();
             }
-                    
-            return values;
+            //string filePath = @"..\..\..\Tamagotchi\" + name + ".txt";
+
+            //if (File.Exists(filePath))
+            //{                
+            //    File.Delete(filePath);
+            //}
+            //using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..\..\..\Tamagotchi\" + name + ".txt"))
+            //{                                           
+            //    foreach (int statValue in statValues.Values)
+            //    {
+            //        file.WriteLine(statValue);
+            //    }
+            //    file.WriteLine(gender);
+            //    file.Close();
+            //}
         }
+        public dynamic Load(string name)
+        {
+
+            var context = new TamagotchiEntities();
+            var tama = context.TamagotchiObjects.Find(name);
+            int[] stats = { tama.Happiness, tama.Hunger, tama.Tiredness, tama.Fullness };
+            tama.adjustStats(stats);
+            return tama;
+        }
+            //List<dynamic> values = new List<dynamic>();
+            //string line;
+
+            //using (System.IO.StreamReader file = new System.IO.StreamReader(@"..\..\..\Tamagotchi\" + name + ".txt"))
+            //{
+            //    int i = 0;      
+            //    while ((line = file.ReadLine()) != null)
+            //    {   if (i == 4)
+            //        {
+            //            values.Add(line);
+            //        }
+            //        else
+            //        {
+            //            values.Add(Convert.ToInt32(line));
+            //            i += 1;
+            //        };
+            //    }
+            //    file.Close();
+            //}
+
+            //return values;
     }
 }

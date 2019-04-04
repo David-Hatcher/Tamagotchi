@@ -60,16 +60,16 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TestNameGetSet()
         {
-            to.name = "Jimmy";
-            string result = to.name;
+            to.Name = "Jimmy";
+            string result = to.Name;
             string expected ="Jimmy";
             Assert.AreEqual(result, expected);
         }
         [TestMethod]
         public void TestGenderGetSet()
         {
-            to.gender = "Jimmy";
-            string result = to.gender;
+            to.Gender = "Jimmy";
+            string result = to.Gender;
             string expected = "Jimmy";
             Assert.AreEqual(result, expected);
         }
@@ -90,7 +90,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TeststatStatus()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.statStatus("tiredness");
             string expected = "Jimmy feels a little tired.";
             Assert.AreEqual(result, expected);
@@ -98,7 +98,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TeststatStatus2()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.statStatus("hunger");
             string expected = "Jimmy feels like they could probably eat.";
             Assert.AreEqual(result, expected);
@@ -106,7 +106,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TeststatStatus3()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.statStatus("happiness");
             string expected = "Jimmy feels content.";
             Assert.AreEqual(result, expected);
@@ -114,7 +114,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TeststatStatus4()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.statStatus("fullness");
             string expected = "Jimmy feels like they can wait awhile to use the bathroom.";
             Assert.AreEqual(result, expected);
@@ -129,7 +129,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TestPayerChoicePlay()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.PlayerChoice("poop");
             string expected = "You took Jimmy to the bathroom.";
             Assert.AreEqual(result, expected);
@@ -137,7 +137,7 @@ namespace TamagotchiObjectUnitTest
         [TestMethod]
         public void TestPayerChoiceHunger()
         {
-            to.name = "Jimmy";
+            to.Name = "Jimmy";
             string result = to.PlayerChoice("hunger");
             string expected = "Jimmy feels like they could probably eat.";
             Assert.AreEqual(result, expected);
