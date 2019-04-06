@@ -32,7 +32,7 @@ namespace Tamagotchi
                     catch
                     {
                         Console.WriteLine("Character does not exist, please enter a valid character name or select new.");
-                        loadOrNewChoice = LoadOrNew();
+                        LoadTama();
                     }
                 }
                 else

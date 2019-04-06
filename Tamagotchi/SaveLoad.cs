@@ -50,7 +50,7 @@ namespace Tamagotchi
 
             var context = new TamagotchiEntities();
             var tama = context.TamagotchiObjects.Find(name);
-            int[] stats = { tama.Happiness, tama.Hunger, tama.Tiredness, tama.Fullness };
+            int[] stats = { tama.Happiness - 50, tama.Hunger - 50, tama.Tiredness - 50, tama.Fullness - 50 };
             tama.adjustStats(stats);
             return tama;
         }

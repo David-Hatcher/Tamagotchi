@@ -58,8 +58,6 @@ namespace Tamagotchi
 
         public void adjustStats(int[] changes)
         {
-
-
             for (int i = 0; i < changes.Length; i++)
             {
                 string[] stats = statValues.Keys.ToArray();
@@ -79,9 +77,7 @@ namespace Tamagotchi
                         Fullness += changes[i];
                         break;
                 }
-
             }
-
         }
 
         public string inputError()
